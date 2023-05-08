@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>HYPE</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/static/assets/img/logosymbol.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+    rel="stylesheet">
+
+
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/static/assets/css/style.css" rel="stylesheet">
+
+
+  <!-- <link rel="manifest" href="site.webmanifest"> -->
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <!-- Timeline CSS here -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/static/css/magnific-popup.css">
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/themify-icons.css">
+  <link rel="stylesheet" href="/static/css/gijgo.css">
+  <link rel="stylesheet" href="/static/css/nice-select.css">
+  <link rel="stylesheet" href="/static/css/animate.css">
+  <link rel="stylesheet" href="/static/css/flaticon.css">
+  <link rel="stylesheet" href="/static/css/slicknav.css">
+
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+
+  <!-- fa icon -->
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center ">
+    <div class="container-fluid container-xxl d-flex align-items-center">
+
+      <div id="logo" class="me-auto">
+        <a href="/" class="scrollto"><img src="/static/assets/img/logo.png" alt="" title=""></a>
+      </div>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#timeline">Events</a></li>
+          <li><a class="nav-link scrollto" href="#hotels">Committees</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+          <li><a class="nav-link scrollto" href="#subscribe">Newsletter</a></li>
+          <li id="search-bar-li" class="d-none">
+            <form id="search-form" class="d-flex align-items-center">
+              <input id="search-input" type="text" placeholder="Search">
+              <button id="search-submit" type="submit">Search</button>
+            </form>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+        <i class="bi bi-search mobile-search-toggle white-icon" style="color: #9195a2; padding-left: 10px;"></i>
+      </nav>
+      <a class="buy-tickets scrollto" href="/login">Login</a>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+      <h1 class="mb-4 pb-0">Join The<br><span>HYPE</span> </h1>
+      <p class="mb-4 pb-0">Experience college like never before!</p>
+      <a href="#timeline" class="about-btn scrollto">Get Started</a>
+    </div>
+  </section>
+  <!-- End Hero Section -->
+  <br><br>
+
+  <!--Timeline Section -->
+  <div class="container" id="timeline">
+    <h1 class="mb-4 pb-0 text-center">Upcoming Events!</h1>
+    <div class="main-timeline">
+      <br><br>
+      {% for event in events %}
+      <div class="timeline">
+        <div class="icon"></div>
+        <div class="date-content">
+          <div class="date-outer">
+            <span class="date">
+              <span class="month">{{ date_list[loop.index0] }}</span>
+              <span class="year">{{ day_list[loop.index0] }}</span>
+            </span>
+          </div>
+        </div>
+        <div class="timeline-content">
+          <h5 class="title"><a href="/Hype/event/{{event.eid}}" style=" text-transform: capitalize;">{{event.name}}</a>
+          </h5>
+          <p class="description">
+            {{event.about}}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+  <!-- Timeline section ends -->
+
+  <main id="main">
+
+    <!-- ======= Hotels Section ======= -->
+    <section id="hotels" class="section-with-bg" style="background-color: #040919;">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2><a href="/Hype/committees/all" style="color: white;">Committees</a></h2>
+          <p style="color:#9195a2;">Explore!</p>
+        </div>
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-5 col-md-5">
+            <div class="hotel">
+              <div class="hotel-img">
+                <img src="/static/assets/img/hotels/1.jpg" alt="Hotel 1" class="img-fluid">
+              </div>
+              <br>
+              <h3 class='text-center'><a href="/Hype/committees/sc">Student Council</a> </h3>
+              <br>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2">
+          </div>
+          <div class="col-lg-5 col-md-5">
+            <div class="hotel">
+              <div class="hotel-img">
+                <img src="/static/assets/img/hotels/2.jpg" alt="Hotel 2" class="img-fluid">
+              </div>
+              <br>
+              <h3 class='text-center'><a href="/Hype/committees/others">Non-Student Council</a></h3>
+              <br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+
+    </section>
+    <!-- End Hotels Section -->
+    <br><br><br>
+
+    <section id="gallery">
+
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Gallery</h2>
+          <p>Check our gallery from the recent events</p>
+        </div>
+      </div>
+
+      <div class="gallery-slider swiper">
+        <div class="swiper-wrapper align-items-center">
+          <div class="swiper-slide"><a href="/static/assets/img/gallery/1.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/1.jpg" class="img-fluid" alt=""></a></div>
+          <div class="swiper-slide"><a href="/static/assets/img/gallery/2.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/2.jpg" class="img-fluid" alt=""></a></div>
+          <div class="swiper-slide"><a href="/static/assets/img/gallery/3.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/3.jpg" class="img-fluid" alt=""></a></div>
+          <div class="swiper-slide"><a href="/static/assets/img/gallery/4.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/4.jpg" class="img-fluid" alt=""></a></div>
+          <div class="swiper-slide"><a href="/static/assets/img/gallery/5.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/5.jpg" class="img-fluid" alt=""></a></div>
+          <div class="swiper-slide"><a href="/static/assets/img/gallery/6.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/6.jpg" class="img-fluid" alt=""></a></div>
+          <div class="swiper-slide"><a href="/static/assets/img/gallery/7.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/7.jpg" class="img-fluid" alt=""></a></div>
+          <div class="swiper-slide"><a href="/static/assets/img/gallery/8.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/8.jpg" class="img-fluid" alt=""></a></div>
+          <!-- <div class="swiper-slide"><a href="/static/assets/img/gallery/8.jpg" class="gallery-lightbox"><img
+                src="/static/assets/img/gallery/8.jpg" class="img-fluid" alt=""></a></div> -->
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </section>
+    <!-- End Gallery Section -->
+
+
+    <!-- ======= Subscribe Section ======= -->
+    <section id="subscribe">
+      <div class="container" data-aos="zoom-in">
+        <div class="section-header">
+          <h2>Newsletter</h2>
+          <p>Stay updated with the latest events!</p>
+        </div>
+
+        <form method="POST" action="/">
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-10 d-flex">
+              <input type="text" class="form-control" placeholder="Enter your Email" name="email">
+              <button type="submit" class="ms-2">Subscribe</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </section>
+    <!-- End Subscribe Section -->
+
+  </main>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" style="padding-bottom: 0px;">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <img src="/static/assets/img/logo.png" alt="Hype">
+            <p> &copy; Copyright <strong>Hype</strong>. <br>All Rights Reserved
+            </p>
+          </div>
+
+          <div class="col-lg-6 footer-contact">
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/static/assets/vendor/aos/aos.js"></script>
+  <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/static/assets/js/main.js"></script>
+</body>
+
+</html>

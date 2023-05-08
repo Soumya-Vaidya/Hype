@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Committee Registration Page</title>
+
+  <!-- Favicons -->
+  <link href="/static/assets/img/logosymbol.png" rel="icon">
+
+  <!-- Adding Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <style>
+    body {
+      background-image: linear-gradient(90deg, rgba(4, 13, 62, 0.75) 40%, rgba(38, 14, 93, 0.75) 100%), url("https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=600");
+    }
+  </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="">
+
+  <div class="container mt-5 mb-5">
+    <div class="card mx-auto" style="max-width: 650px;">
+      <div class="card-header">
+        <h2 class="text-center">Committee Registration Form</h2>
+      </div>
+      <div class="card-body">
+        <p style="text-align: center;">{{ messsage }}</p>
+        <form action="/register" method="POST" name="form" ng-submit="submitForm()">
+          <div class="form-group">
+            <label for="committeeName">Committee Name</label>
+            <input type="text" class="form-control" name="name" id="committeeName" ng-model="committeeName"
+              ng-required="true">
+            <span ng-show="form.committeeName.$touched && form.committeeName.$error.required">Committee Name is
+              required.</span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email ID</label>
+            <input type="email" class="form-control" id="email" name="email" ng-model="email" ng-required="true"
+              ng-pattern="/^[a-z][a-z0-9]*(\.[a-z0-9]+)*?(_[a-z0-9]+)*?(-[a-z0-9]+)*?@[a-z]+(-[a-z0-9]+)*?\.[a-z]+(\.[a-z0-9]+)??$$/">
+            <span ng-show="form.email.$touched && form.email.$error.required">Email ID is required.</span>
+            <span ng-show="form.email.$touched && form.email.$error.pattern">Please enter valid Email ID.</span>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" ng-minlength="8"
+              ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" name="password" ng-model="password"
+              ng-required="true">
+            <span ng-show="form.password.$touched && form.password.$error.required">Password is
+              required.</span>
+            <span ng-show="form.password.$error.pattern && form.password.$touched">
+              <br>Should contain at least one uppercase letter, one lowercase
+              letter, and one number.<br>
+            </span>
+            <span ng-show="form.password.$touched && form.password.$error.minlength">Minimum 8 characters.</span>
+          </div>
+          <div class="form-group">
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmpassword" name="confirm_password"
+              ng-model="confirmpassword" ng-required="true" onkeyup="matchp()">
+            <span ng-show="form.confirmpassword.$touched && form.confirmpassword.$error.required">Password is
+              required.</span>
+            <span id="errorcp"></span>
+          </div>
+          <div class="form-group">
+            <label for="council">Council</label>
+            <select class="form-control" id="council" name="sc">
+              <option value="1">Student Council</option>
+              <option value="0">Non-Student Council</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="facultyInCharge">Name of Faculty In-Charge</label>
+            <input type="text" class="form-control" id="facultyInCharge" name="faculty_incharge" required>
+          </div>
+          <div class="form-group">
+            <label for="facultyEmail">Mail ID of Faculty In-Charge</label>
+            <input type="email" class="form-control" id="facultyEmail" name="facultyEmail" ng-model="facultyEmail"
+              ng-pattern="/^[a-z][a-z0-9]*(\.[a-z0-9]+)*?(_[a-z0-9]+)*?(-[a-z0-9]+)*?@[a-z]+(-[a-z0-9]+)*?\.[a-z]+(\.[a-z0-9]+)??$$/"
+              ng-required="true">
+            <span ng-show="form.facultyEmail.$touched && form.facultyEmail.$error.required">Email ID is required.</span>
+            <span ng-show="form.facultyEmail.$touched && form.facultyEmail.$error.pattern">Please enter valid Email
+              ID.</span>
+          </div>
+          <div class="form-group">
+            <label for="studentInCharge">Name of Student In-Charge</label>
+            <input type="text" class="form-control" id="studentInCharge" name="student_incharge" required>
+          </div>
+          <div class="form-group">
+            <label for="contactNumber">Contact Number of Student In-Charge</label>
+            <input type="tel" class="form-control" id="contactNumber" name="contactNumber" ng-model="contactNumber"
+              ng-pattern="/^(\+[0-9]{2})?[0-9]{10}$/" ng-required="true">
+            <span ng-show="form.contactNumber.$touched && form.contactNumber.$error.required">Phone Number is
+              required.</span>
+            <span ng-show="form.contactNumber.$error.pattern && form.contactNumber.$touched">
+              Enter a valid Phone Number
+            </span>
+          </div>
+          <!-- <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" class="form-control-file" id="image" name="image">
+          </div> -->
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="URL" class="form-control" id="image" name="image" required>
+          </div>
+          <div class="form-group">
+            <label for="domain">Domain</label>
+            <input type="text" class="form-control" id="domain" name="domain" required>
+          </div>
+          <div class="form-group">
+            <label for="about">About</label>
+            <textarea class="form-control" id="about" rows="3" required name="about"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="numberOfStudents">Number of Students</label>
+            <input type="number" class="form-control" id="numberOfStudents" name="strength" required>
+          </div>
+          <div class="form-group">
+            <label for="websiteLink">Website Link (URL)</label>
+            <input type="url" class="form-control" id="websiteLink" name="website" required>
+          </div>
+          <div class="form-group">
+            <label for="socialMediaLink">Social Media Link (URL)</label>
+            <input type="url" class="form-control" id="socialMediaLink" name="socials" required>
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adding Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope) {
+
+      $scope.submitForm = function () {
+        if ($scope.form.$valid) {
+          alert('Committee registered successfully!');
+        } else {
+          alert('{{ message }}');
+        }
+      };
+    });
+    function matchp() {
+      let cp = document.getElementById("confirmpassword").value;
+      let p = document.getElementById("password").value;
+      if (p != cp) {
+        document.getElementById("errorcp").innerHTML = "Password doesn't match!";
+      }
+      else {
+        document.getElementById("errorcp").innerHTML = "";
+      }
+    }
+  </script>
+</body>
+
+</html>

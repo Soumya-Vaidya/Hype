@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>HYPE</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/static/assets/img/logosymbol.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/assets/css/style.css" rel="stylesheet">
+    <link href="/static/assets/css/eventcountdown.css" rel="stylesheet">
+
+    <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- For confetti -->
+    <link rel="stylesheet" href="/static/demo.css">
+    <style>
+        .confetti {
+            max-width: 100%;
+            display: block;
+            margin: 0;
+            border: none;
+            user-select: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center header-inner">
+        <div class="container-fluid container-xxl d-flex align-items-center">
+
+            <div id="logo" class="me-auto">
+                <a href="/" class="scrollto"><img src="/static/assets/img/logo.png" alt="" title=""></a>
+            </div>
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto" href="/">Home</a></li>
+                    <li><a class="nav-link scrollto" href="/Hype/committees/all">Committees</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <!-- .navbar -->
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main" class="main-page">
+
+        <!-- ======= Speaker Details Sectionn ======= -->
+        <section id="speakers-details" id="boxes">
+            <div class="container d-flex flex-column align-items-center">
+                {% if event.start_date == today %}
+                <canvas class="confetti" id="canvas"></canvas>
+                {% else %}
+                {% if event.start_date > today %}
+                <div class="section-header mt-3 mb-1">
+                    <h2>{{ event.name }}</h2>
+                    <p>{{ event.start_date }}</p>
+                </div>
+                <div class="row mb-3" id="timer">
+                    <div class="col-md-3" id="days">Days</div>
+                    <div class="col-md-3" id="hours">Hours</div>
+                    <div class="col-md-3" id="minutes">Mins</div>
+                    <div class="col-md-3" id="seconds">Secs</div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md-12 center">
+                        <h4 class="mt-4" style="text-align: center;">{{ event.about }}</h4>
+                    </div>
+                </div>
+                {% else %}
+                <div class="section-header mt-3 mb-1">
+                    <h2>{{ event.name }}</h2>
+                    <p>{{ event.start_date }}</p>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md-12 center">
+                        <h4 class="mt-4" style="text-align: center;">{{ event.about }}</h4>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% for event in subevents %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{ event.image }}" alt="event_image" class="img-fluid">
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="details">
+                            <h2>{{ event.name }}</h2>
+                            <h4>{{ event.start_time }} - {{ event.end_time}}</h4>
+                            <br>
+                            <p>{{ event.about }}</p>
+                        </div>
+                    </div>
+
+                </div>
+                <br><br>
+                {% endfor %}
+
+            </div>
+
+        </section>
+        <section id="contact" class="section-bg" style="background-color: #040919;">
+
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header">
+                    <h2 style="color: white;">Contact Us</h2>
+                    <p>Details</p>
+                </div>
+
+                <div class="row contact-info">
+
+                    <div class="col-md-4">
+                        <div class="contact-address">
+                            <i class="bi bi-person"></i>
+                            <h3 style="color: white;">Student In-Charge</h3>
+                            <p style="color:#9195a2;">{{ committee.student_incharge }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-phone">
+                            <i class="bi bi-phone"></i>
+                            <h3 style="color: white;">Phone Number</h3>
+                            <p><a href="tel:{{ committee.contact }}" style="color:#9195a2;">{{ committee.contact }}</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-email">
+                            <i class="bi bi-envelope"></i>
+                            <h3 style="color: white;">Email</h3>
+                            <p> <a href="mailto:{{ committee.email }}" style="color:#9195a2;">{{ committee.email }}</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- End #main -->
+
+    <section id="supporters" class="section-with-bg">
+
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Sponsors</h2>
+            </div>
+
+            <div class="row no-gutters supporters-wrap clearfix" data-aos="zoom-in" data-aos-delay="100">
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="supporter-logo">
+                        <img src="/static/assets/img/supporters/1.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="supporter-logo">
+                        <img src="/static/assets/img/supporters/2.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="supporter-logo">
+                        <img src="/static/assets/img/supporters/3.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="supporter-logo">
+                        <img src="/static/assets/img/supporters/4.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="supporter-logo">
+                        <img src="/static/assets/img/supporters/5.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="supporter-logo">
+                        <img src="/static/assets/img/supporters/6.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="supporter-logo">
+                        <img src="/static/assets/img/supporters/7.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="supporter-logo">
+                        <img src="/static/assets/img/supporters/8.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- End Sponsors Section -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" style="padding-bottom: 0px;">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-info">
+                        <img src="/static/assets/img/logo.png" alt="Hype">
+                        <p> &copy; Copyright <strong>Hype</strong>. <br>All Rights Reserved
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 footer-contact">
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h4>Contact Us</h4>
+
+                        <div class="social-links">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End  Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/assets/vendor/aos/aos.js"></script>
+    <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/assets/js/main.js"></script>
+    <script>
+
+        localStorage.setItem("event_name", "{{event.name}}");
+        localStorage.setItem("date", "{{event.start_date}}");
+        localStorage.setItem("about", "{{event.about}}");
+        // canvas
+        // canvas = document.getElementById("canvas");
+        // ctx = canvas.getContext("2d");
+        // ctx.font = "30px Arial";
+        // ctx.fillStyle = "black";
+        // ctx.textAlign = "center";
+        // ctx.fillText(localStorage.getItem("event_name"), canvas.width / 2, canvas.height / 2);
+
+
+        function makeTimer() {
+            var day = "{{ start_date }}";
+            console.log(day)
+            // var endTime = new Date("August 26, 2023 18:00:00 PDT");
+            var endTime = new Date(day);
+            var endTime = (Date.parse(endTime)) / 1000;
+
+            var now = new Date();
+            var now = (Date.parse(now) / 1000);
+
+            var timeLeft = endTime - now;
+
+            var days = Math.floor(timeLeft / 86400);
+            var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+            var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600)) / 60);
+            var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+
+            if (hours < "10") { hours = "0" + hours; }
+            if (minutes < "10") { minutes = "0" + minutes; }
+            if (seconds < "10") { seconds = "0" + seconds; }
+
+            $("#days").html(days + "<span>Days</span>");
+            $("#hours").html(hours + "<span>Hours</span>");
+            $("#minutes").html(minutes + "<span>Mins</span>");
+            $("#seconds").html(seconds + "<span>Secs</span>");
+
+        }
+
+        setInterval(function () { makeTimer(); }, 1000);
+
+
+    </script>
+    <!-- Confetti JS -->
+    <script type="text/javascript" src="{{ url_for('static', filename='confetti.js') }}"></script>
+
+    <!-- <script src="/static/confetti.js" ></script> -->
+</body>
+
+</html>

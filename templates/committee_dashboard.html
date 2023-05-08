@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>HYPE</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/static/assets/img/logosymbol.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+        rel="stylesheet">
+
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/assets/css/style.css" rel="stylesheet">
+
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center header-inner">
+        <div class="container-fluid container-xxl d-flex align-items-center">
+
+            <div id="logo" class="me-auto">
+                <a href="/" class="scrollto"><img src="/static/assets/img/logo.png" alt="" title=""></a>
+            </div>
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto" href="/">Home</a></li>
+                    <li><a class="nav-link scrollto" href="/Hype/committees/all">Committees</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <!-- .navbar -->
+            <a class="buy-tickets scrollto" href="/">Logout</a>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+        <!-- <section id="hero" style="background: url({{ committee.image }}) top center;background-size:contain;"> -->
+        <!-- <section id="hero" style="background: url({{ committee.image }}) top center; background-size: contain;"> -->
+
+        <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+            <h1 class="mb-4 pb-0"> {{ committee.name }}<br></h1>
+            {% if committee.sc == 1 %}
+            <p class="mb-4 pb-0">Student Council</p>
+            {% else %}
+            <p class="mb-4 pb-0">Non Student Council</p>
+            {% endif %}
+            <a href="#hotels" class="about-btn scrollto">Learn More</a>
+        </div>
+    </section>
+    <!-- End Hero Section -->
+
+    <main id="main">
+
+        <!-- ======= Hotels Section ======= -->
+        <section id="hotels" class="section-with-bg" style="text-align:center;background-color: #040919;">
+            <div class="container" data-aos="fade-up">
+                <div class="section-header">
+                    <h2 style="color:white;">About Us</h2>
+                    <p><a href="/Hype/{{ committee.cid }}/edit"><i class="bi bi-pencil-square" title="Edit"
+                                style="color:white"></i></a></p>
+                </div>
+                <h3 style="color:#9195a2;">{{ committee.about }}</h3><br><br>
+                <div class="row p-3">
+                    <div class="col-md-4">
+                        <h3 style="color:white;">Faculty In-Charge</h3>
+                        <p style="color:#9195a2;"><br>{{ committee.faculty_incharge }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 style="color:white;">Domain</h3>
+                        <p style="color:#9195a2;"><br>{{ committee.domain }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 style="color:white;">Students</h3>
+                        <p style="color:#9195a2;"><br>{{ committee.strength }}</p>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h3 style="color:white;">Website</h3>
+                        <!-- <p style="color:#9195a2;"><br>{{ committee.website }}</p> -->
+                        <p style="color:#9195a2;"><br><a href="{{ committee.website}}" style="color: #9195a2;">
+                                {{ committee.website }}</a></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 style="color:white;">Social Media</h3>
+                        <p style="color:#9195a2;"><br><a href="{{ committee.socials}}" style="color: #9195a2;">Link to
+                                Socials</a></p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </section>
+        <!-- End Hotels Section -->
+
+        <!-- ======= Schedule Section ======= -->
+        <section id="schedule" class="section-with-bg">
+            <div class="container" data-aos="fade-up">
+                <div class="section-header">
+                    <h2>Our Events</h2>
+                    <p><a href="/Hype/{{ committee.cid }}/event/add"><i class="bi bi-plus-circle"
+                                title="Add Main Event"></i></a></p>
+                </div>
+
+                <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">Upcoming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab">Past</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+                    <!-- Upcoming Events -->
+                    <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
+                        {% for event in events %}
+                        <div class="row schedule-item">
+                            <div class="col-md-2">{{ event.start_date }}</div>
+                            <div class="col-md-2">
+                                <div class="speaker">
+                                    <img src="{{ event.image }}" alt="event_image">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4><a href="/Hype/event/{{ event.eid }}"> {{ event.name }} </a></h4>
+                                {% for subevent in subevents[loop.index0] %}
+                                <p>{{ subevent.name }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-2">
+                                <p>
+                                    <a href="/Hype/{{ event.cid }}/event/{{ event.eid }}/edit"><i
+                                            class="bi bi-pencil-square" title="Edit"></i></a>
+                                    <a href="/Hype/{{ event.cid }}/event/{{ event.eid }}/delete"><i class="bi bi-trash3"
+                                            title="Delete"></i></a>
+                                    <a href="/Hype/{{ event.cid }}/event/{{ event.eid }}/subevent/add"><i
+                                            class="bi bi-plus-circle" title="Add Sub-Event"></i></a>
+                                </p>
+                                {% for subevent in subevents[loop.index0] %}
+                                <p>
+                                    <a
+                                        href="/Hype/{{ event.cid }}/event/{{ event.eid }}/subevent/{{ subevent.seid }}/edit"><i
+                                            class="bi bi-pencil-square" title="Edit"></i></a>
+                                    <a
+                                        href="/Hype/{{ event.cid }}/event/{{ event.eid }}/subevent/{{ subevent.seid }}/delete"><i
+                                            class="bi bi-trash3" title="Delete"></i></a>
+                                </p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- End Upcoming Events -->
+
+                    <!-- Schdule Day 2 -->
+                    <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
+                        {% for event in past_events %}
+                        <div class="row schedule-item">
+                            <div class="col-md-2">{{ event.start_date }}</div>
+                            <div class="col-md-2">
+                                <div class="speaker">
+                                    <img src="{{ event.image }}" alt="event_image">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4><a href="/Hype/event/{{ event.eid }}">{{ event.name }}</a></h4>
+                                {% for subevent in past_subevents[loop.index0] %}
+                                <p>{{ subevent.name }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-2">
+                                <p>
+                                    <a href="/Hype/{{ event.cid }}/event/{{ event.eid }}/edit"><i
+                                            class="bi bi-pencil-square" title="Edit"></i></a>
+                                    <a href="/Hype/{{ event.cid }}/event/{{ event.eid }}/delete"><i class="bi bi-trash3"
+                                            title="Delete"></i></a>
+                                </p>
+                                {% for subevent in past_subevents[loop.index0] %}
+                                <p>
+                                    <a
+                                        href="/Hype/{{ event.cid }}/event/{{ event.eid }}/subevent/{{ subevent.seid }}/edit"><i
+                                            class="bi bi-pencil-square" title="Edit"></i></a>
+                                    <a
+                                        href="/Hype/{{ event.cid }}/event/{{ event.eid }}/subevent/{{ subevent.seid }}/delete"><i
+                                            class="bi bi-trash3" title="Delete"></i></a>
+                                </p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- End Schdule Day 2 -->
+
+                </div>
+
+            </div>
+
+        </section><!-- End Schedule Section -->
+
+
+        <!-- ======= Gallery Section ======= -->
+        <section id="gallery" style="background-color: #040919;">
+
+            <div class="container" data-aos="fade-up">
+                <div class="section-header">
+                    <h2 style="color:white;">Gallery</h2>
+                </div>
+            </div>
+
+            <div class="gallery-slider swiper">
+                <div class="swiper-wrapper align-items-center">
+                    {% for event in all_events %}
+                    <div class="swiper-slide"><img src={{event.image}} class="img-fluid" alt=""></a></div>
+                    {% endfor %}
+                    <div class="swiper-slide"><a href="/static/assets/img/gallery/1.jpg" class="gallery-lightbox"><img
+                                src="/static/assets/img/gallery/1.jpg" class="img-fluid" alt=""></a></div>
+                    <div class="swiper-slide"><a href="/static/assets/img/gallery/2.jpg" class="gallery-lightbox"><img
+                                src="/static/assets/img/gallery/2.jpg" class="img-fluid" alt=""></a></div>
+                    <div class="swiper-slide"><a href="/static/assets/img/gallery/3.jpg" class="gallery-lightbox"><img
+                                src="/static/assets/img/gallery/3.jpg" class="img-fluid" alt=""></a></div>
+                    <div class="swiper-slide"><a href="/static/assets/img/gallery/4.jpg" class="gallery-lightbox"><img
+                                src="/static/assets/img/gallery/4.jpg" class="img-fluid" alt=""></a></div>
+                    <div class="swiper-slide"><a href="/static/assets/img/gallery/5.jpg" class="gallery-lightbox"><img
+                                src="/static/assets/img/gallery/5.jpg" class="img-fluid" alt=""></a></div>
+                    <div class="swiper-slide"><a href="/static/assets/img/gallery/6.jpg" class="gallery-lightbox"><img
+                                src="/static/assets/img/gallery/6.jpg" class="img-fluid" alt=""></a></div>
+                    <div class="swiper-slide"><a href="assets/img/gallery/7.jpg" class="gallery-lightbox"><img
+                                src="/static/assets/img/gallery/7.jpg" class="img-fluid" alt=""></a></div>
+                    <div class="swiper-slide"><a href="/static/assets/img/gallery/8.jpg" class="gallery-lightbox"><img
+                                src="/static/assets/img/gallery/8.jpg" class="img-fluid" alt=""></a></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </section>
+        <!-- End Gallery Section -->
+
+
+        <!-- ======= Contact Us Section ======= -->
+        <section id="contact" class="section-bg">
+
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header">
+                    <h2>Contact Us</h2>
+                </div>
+
+                <div class="row contact-info">
+
+                    <div class="col-md-4">
+                        <div class="contact-address">
+                            <i class="bi bi-person"></i>
+                            <h3>Student In-Charge</h3>
+                            <p style="color:#9195a2;">{{ committee.student_incharge }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-phone">
+                            <i class="bi bi-phone"></i>
+                            <h3>Phone Number</h3>
+                            <p><a href="tel:{{ committee.contact }}" style="color:#9195a2;">{{ committee.contact }}</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-email">
+                            <i class="bi bi-envelope"></i>
+                            <h3>Email ID</h3>
+                            <p> <a href="mailto:{{ committee.email }}" style="color:#9195a2;">{{ committee.email }}</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" style="padding-bottom: 0px;">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-info">
+                        <img src="/static/assets/img/logo.png" alt="Hype">
+                        <p> &copy; Copyright <strong>Hype</strong>. <br>All Rights Reserved
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 footer-contact">
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h4>Contact Us</h4>
+
+                        <div class="social-links">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End  Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/assets/vendor/aos/aos.js"></script>
+    <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/assets/js/main.js"></script>
+
+</body>
+
+</html>

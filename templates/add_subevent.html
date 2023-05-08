@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sub-Event Registration Page</title>
+
+	<!-- Favicons -->
+	<link href="/static/assets/img/logosymbol.png" rel="icon">
+
+	<!-- Adding Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		body {
+			background-image: linear-gradient(90deg, rgba(4, 13, 62, 0.75) 40%, rgba(38, 14, 93, 0.75) 100%), url("https://i.pinimg.com/736x/09/1a/19/091a19ce13855a1974f190f4dd580fb7.jpg");
+			background-size: contain;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container my-4">
+		<div class="card mx-auto" style="max-width: 650px;">
+			<div class="card-header">
+				<h2 class="text-center">Sub-Event Registration Form</h2>
+			</div>
+			<div class="card-body">
+				<form action="/Hype/{{cid}}/event/{{eid}}/subevent/add" method="POST">
+					<!-- <div class="form-group">
+						<label for="event">Event</label>
+						<select class="form-control" id="event" required>
+							<option value="">-- Select an Event --</option>
+							<option value="A">Event A</option>
+							<option value="B">Event B</option>
+							<option value="C">Event C</option>
+							<option value="D">Event D</option>
+							<option value="E">Event E</option>
+						</select>
+					</div> -->
+					<div class="form-group">
+						<label for="subEventName">Sub-Event Name</label>
+						<input type="text" class="form-control" id="subEventName" name="name" required>
+					</div>
+					<div class="form-group">
+						<label for="aboutSubEvent">About Sub-Event</label>
+						<textarea class="form-control" id="aboutSubEvent" rows="3" name="about" required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="startDate">Start Date</label>
+						<input type="date" class="form-control" id="startDate" name="start_date" required>
+					</div>
+					<div class="form-group">
+						<label for="endDate">End Date</label>
+						<input type="date" class="form-control" id="endDate" name="end_date" required>
+					</div>
+					<div class="form-group">
+						<label for="startTime">Start Time</label>
+						<input type="time" class="form-control" id="startTime" name="start_time" required>
+					</div>
+					<div class="form-group">
+						<label for="endTime">End Time</label>
+						<input type="time" class="form-control" id="endTime" name="end_time" required>
+					</div>
+					<!-- <div class="form-group">
+						<label for="image">Image</label>
+						<input type="file" class="form-control-file" id="image" name="image">
+					</div> -->
+					<div class="form-group">
+						<label for="image">Image</label>
+						<input type="URL" class="form-control" id="image" name="image" required>
+					</div>
+					<div class="form-group text-center">
+						<button type="submit" class="btn btn-primary" onclick="return validateForm()">Add</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Adding Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<script>
+		function validateForm() {
+			const startDate = document.getElementById("startDate").value;
+			const endDate = document.getElementById("endDate").value;
+			const startTime = document.getElementById("startTime").value;
+			const endTime = document.getElementById("endTime").value;
+
+			// Check that end date is after start date
+			if (new Date(endDate) < new Date(startDate)) {
+				alert("End date cannot be before start date.");
+				return false;
+			}
+
+			// Check that end time is after start time
+			if (new Date(`${startDate} ${endTime}`) < new Date(`${startDate} ${startTime}`)) {
+				alert("End time cannot be before start time.");
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+</body>
+
+</html>

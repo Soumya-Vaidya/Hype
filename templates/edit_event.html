@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+
+    <!-- Favicons -->
+    <link href="/static/assets/img/logosymbol.png" rel="icon">
+
+    <!-- Adding Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: linear-gradient(90deg, rgba(4, 13, 62, 0.75) 40%, rgba(38, 14, 93, 0.75) 100%), url("https://images.unsplash.com/photo-1603910234616-3b5f4a6be2b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGZlc3RpdmFsfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+            background-size: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-4">
+        <div class="card mx-auto" style="max-width: 650px;">
+            <div class="card-header">
+                <h2 class="text-center">Edit Event</h2>
+            </div>
+            <div class="card-body">
+                <form action="/Hype/{{event.cid}}/event/{{event.eid}}/edit" method="POST">
+                    <div class="form-group">
+                        <label for="eventName">Event Name</label>
+                        <input type="text" name="name" class="form-control" id="eventName" value="{{ event.name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="about">About</label>
+                        <textarea class="form-control" name="about" id="about" rows="3"
+                            required>{{ event.about }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" class="form-control" id="startDate" name="start_date"
+                            value="{{ event.start_date }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <input type="date" class="form-control" id="endDate" name="end_date"
+                            value="{{ event.end_date }}" required>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control-file" id="image" value="{{ event.image }}" name="image">
+                    </div> -->
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="URL" class="form-control" id="image" name="image" value="{{ event.image }}"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="websiteLink">Website Link (URL)</label>
+                        <input type="url" class="form-control" id="websiteLink" value="{{ event.event_website }}"
+                            name="event_website">
+                    </div>
+                    <div class="form-group">
+                        <label for="socialMediaLink">Social Media Link (URL)</label>
+                        <input type="url" class="form-control" id="socialMediaLink" value="{{ event.event_socials }}"
+                            name="event_socials">
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adding Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
+
+            // Check that end date is after start date
+            if (new Date(endDate) < new Date(startDate)) {
+                alert("End date cannot be before start date.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

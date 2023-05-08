@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hype</title>
+
+    <!-- Favicons -->
+    <link href="/static/assets/img/logosymbol.png" rel="icon">
+
+    <!-- Adding Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <style>
+        body {
+            background-image: linear-gradient(90deg, rgba(4, 13, 62, 0.75) 40%, rgba(38, 14, 93, 0.75) 100%), url("https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=600");
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="">
+    <div class="container mt-5 mb-5">
+        <div class="card mx-auto" style="max-width: 650px;">
+            <div class="card-header">
+                <h2 class="text-center">Committee Edit Form</h2>
+            </div>
+            <div class="card-body">
+                <form action="/Hype/{{cid}}/edit" method="POST" name="form">
+                    <div class="form-group">
+                        <label for="committeeName">Committee Name</label>
+                        <input type="text" class="form-control" name="name" id="committeeName"
+                            value="{{committee.name}}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email ID</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{committee.email}}">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" ng-model='password'
+                            required name="password" value="{{committee.password}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmpassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmpassword" name="confirmpassword"
+                            ng-model="confirmpassword" ng-required="true" ng-change="comparePasswords()">
+                        <span ng-show="myForm.confirmPassword.$error.match">Passwords do not match.</span>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="council">Council</label>
+                        <select class="form-control" id="council" name="sc" required>
+                            <option value="1">Student Council</option>
+                            <option value="0" selected>Non-Student Council</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="facultyInCharge">Name of Faculty In-Charge</label>
+                        <input type="text" class="form-control" id="facultyInCharge" name="faculty_incharge"
+                            value="{{committee.faculty_incharge}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="facultyEmail">Mail ID of Faculty In-Charge</label>
+                        <input type="email" class="form-control" id="facultyEmail" name="faculty_email"
+                            value="{{committee.faculty_email}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentInCharge">Name of Student In-Charge</label>
+                        <input type="text" class="form-control" id="studentInCharge" name="student_incharge"
+                            value="{{committee.student_incharge}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactNumber">Contact Number of Student In-Charge</label>
+                        <input type="tel" class="form-control" id="contactNumber" name="contact"
+                            value="{{committee.contact}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control-file" id="image" name="image">
+                    </div>
+                    <div class="form-group">
+                        <label for="domain">Domain</label>
+                        <input type="text" class="form-control" id="domain" name="domain" value="{{committee.domain}}"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="about">About</label>
+                        <textarea class="form-control" id="about" rows="3" name="about">{{committee.about}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfStudents">Number of Students</label>
+                        <input type="number" class="form-control" id="numberOfStudents" name="strength"
+                            value="{{committee.strength}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="websiteLink">Website Link (URL)</label>
+                        <input type="url" class="form-control" id="websiteLink" name="website"
+                            value="{{committee.website}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="socialMediaLink">Social Media Link (URL)</label>
+                        <input type="url" class="form-control" id="socialMediaLink" name="socials"
+                            value="{{committee.socials}}" required>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adding Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.comparePasswords = function () {
+                $scope.myForm.confirmPassword.$setValidity('match', $scope.user.password === $scope.user.confirmPassword);
+            };
+        })
+    </script> -->
+</body>
+
+</html>
