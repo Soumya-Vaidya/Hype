@@ -18,7 +18,20 @@ Hype is an exhilarating web application designed to ignite the college experienc
 python app.py
 ```
 
-This will start the Flask development server. You can access the application by navigating to http://localhost:5000/ in your web browser.
+This will start the Flask development server. You can access the application by navigating to http://localhost:8000/ in your web browser.
+
+### OR Install Using Docker
+
+1. 
+```
+docker build -t hype https://github.com/Soumya-Vaidya/Hype.git
+```
+
+2.
+```
+docker run -p 8000:8000 hype
+```
+
 
 
 ## Features
@@ -35,10 +48,11 @@ This will start the Flask development server. You can access the application by 
 1. On the homepage, the live timeline displays upcoming events.
 2. Click on an event to view detailed information.
 3. Use the navigation menu to access past events or view events by specific clubs/committees.
-4. To add a new event, log in as an committee administrator and navigate to the admin panel.
-5. In the admin panel, you can add, delete, or edit event details. 
-6. Subevents or additional event-related information can be included when adding or editing an event.
-7. Fill in email details to recieve updates via Newsletters
+4. On the day of the event the page greets the user with a confetti animation
+5. To add a new event, log in as an committee administrator and navigate to the admin panel.
+6. In the admin panel, you can add, delete, or edit event details. 
+7. Subevents or additional event-related information can be included when adding or editing an event.
+8. Fill in email details to recieve updates via Newsletters
 
 ## Technology Stack
 Hype is built using the following technologies:
